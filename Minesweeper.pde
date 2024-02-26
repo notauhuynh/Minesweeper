@@ -142,7 +142,7 @@ public class MSButton
         for (int g = myCol - 1; g < myCol + 2; g++) {
           if (isValid(i, g) && !mines.contains(buttons[i][g])) {
             buttons[i][g].clicked = true; 
-            buttons[i][g].myLabel = Integer.toString(countMines(i, g));
+            buttons[i][g].setLabel(countMines(i,g));
           }
         }
       }

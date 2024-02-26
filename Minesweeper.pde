@@ -3,10 +3,10 @@ public final static int NUM_ROWS = 10;
 public final static int NUM_COLS = 10;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList<MSButton>mines=new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
-public boolean lose;
+public boolean gameLoss;
 void setup ()
 {
-  size(400, 400);
+  size(800, 800);
   textAlign(CENTER, CENTER);
 
   // make the manager
@@ -41,7 +41,7 @@ public void draw ()
     displayWinningMessage();
     noLoop(); 
   }
-  if(lose){
+  if(gameLoss){
     for(int i = 0; i < NUM_ROWS; i++){
       for(int g = 0; g < NUM_COLS; g++){
          if((mines.contains(buttons[i][g])))
@@ -51,12 +51,12 @@ public void draw ()
     displayLosingMessage(); 
     noLoop();
   }
-  //System.out.println(isWon() + " " +lose );
+  //System.out.println(isWon() + " " +gameLoss );
 }
 public boolean isWon()
 {
   
-  if(lose){
+  if(gameLoss){
    return false;
   }
   for(int i = 0; i < NUM_ROWS; i++){
@@ -112,8 +112,8 @@ public class MSButton
 
   public MSButton ( int row, int col )
   {
-    width = 400/NUM_COLS;
-    height = 400/NUM_ROWS;
+    width = 800/NUM_COLS;
+    height = 800/NUM_ROWS;
     myRow = row;
     myCol = col; 
     x = myCol*width;
@@ -134,7 +134,7 @@ public class MSButton
       }
     } else if (mines.contains(this)) {
       displayLosingMessage();
-      lose = true;
+      gameLoss = true;
     } else if (countMines(myRow, myCol) > 0) {
       myLabel = Integer.toString(countMines(myRow, myCol));
     } else {
@@ -152,11 +152,11 @@ public class MSButton
   {    
     if (flagged)
       fill(0);
-     else if(lose && mines.contains(this))
+     else if(gameLoss && mines.contains(this))
        fill(255, 0, 0);
     else if ( clicked && mines.contains(this) ) {
       fill(255, 0, 0);
-      lose = true;
+      gameLoss = true;
     }
     else if (clicked)
       fill( 200 );

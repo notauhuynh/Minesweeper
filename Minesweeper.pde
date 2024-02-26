@@ -3,7 +3,7 @@ import de.bezier.guido.*;
 public final static int NUM_ROWS = 7;
 public final static int NUM_COLS = 7;
 private MSButton[][] buttons; //2d array of minesweeper buttons
-private ArrayList <MSButton> mines = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
+private ArrayList<MSButton>mines = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 public boolean lose = false;
 void setup ()
 {
@@ -26,7 +26,7 @@ void setup ()
 public void setMines()
 {
 
-  for (int i = 0; i < 1.5*(NUM_ROWS*NUM_COLS)/NUM_ROWS; i++) {
+  for (int i = 0; i < 2*(NUM_ROWS*NUM_COLS)/NUM_ROWS; i++) {
     int setRow = (int)(Math.random() * NUM_ROWS);
     int setCol = (int)(Math.random() * NUM_COLS);
     if (!mines.contains(buttons[setRow][setCol])) {
@@ -52,7 +52,7 @@ public void draw ()
     displayLosingMessage(); 
     noLoop();
   }
-  System.out.println(isWon() + " " +lose );
+  // System.out.println(isWon() + " " +lose );
 }
 public boolean isWon()
 {

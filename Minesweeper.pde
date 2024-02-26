@@ -45,7 +45,7 @@ public void draw ()
     for(int i = 0; i < NUM_ROWS; i++){
       for(int g = 0; g < NUM_COLS; g++){
          if((mines.contains(buttons[i][g])))
-          buttons[i][g].fillSq(255, 0, 0);
+          buttons[i][g].mousePressed();
        }     
     }
     displayLosingMessage(); 
@@ -182,7 +182,5 @@ public class MSButton
   public boolean isClicked()
   {
     return clicked;
-  } public void fillSq(int a, int b, int c){
-   fill(a, b, c); 
-  }
+  } 
 }

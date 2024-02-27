@@ -1,6 +1,6 @@
 import de.bezier.guido.*;
-public final static int NUM_ROWS = 10;
-public final static int NUM_COLS = 10;
+public final static int NUM_ROWS = 8;
+public final static int NUM_COLS = 8;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> mines = new ArrayList<MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 public boolean gameLoss;
@@ -136,16 +136,15 @@ public class MSButton
       displayLosingMessage();
       gameLoss = true;
     } else if (countMines(myRow, myCol) > 0) {
-      myLabel = Integer.toString(countMines(myRow, myCol));
+      setLabel(countMines(myRow, myCol));
     } else {
       for (int i = myRow - 1; i < myRow + 2; i++) {
-        for (int g = myCol - 1; g < myCol + 2; g++) {
-          if (isValid(i, g) && !mines.contains(buttons[i][g])) {
-            buttons[i][g].clicked = true; 
-            buttons[i][g].setLabel(countMines(i,g));
+        for (int g = myCol - 1; g < myCol + 2; g++) {        
+          if (isValid(i, g) && !buttons[i][g].isClicked()) {
+            buttons[i][g].mousePressed();
           }
         }
-      }
+      }  
     }
   }
   public void draw () 
